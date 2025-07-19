@@ -1,0 +1,20 @@
+name: Release Workflow
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npx expo prebuild --no-install
+      - uses: actions/upload-artifact@v3
+        with:
+          name: production-builds
+          path: |
+            android/app/build/outputs/**/*.apk
+            ios/**/*.ipa
