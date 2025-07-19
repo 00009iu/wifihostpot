@@ -1,8 +1,6 @@
 {
-  "scripts": {
-    "prepare": "husky install"
-  },
   "devDependencies": {
-    "husky": "^8.0.3"
+    "@sentry/cli": "^2.27.0",
+    "react-native-config": "^4.1.0"
   }
 }
