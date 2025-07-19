@@ -1,15 +1,21 @@
-name: E2E Tests
+name: E2E Testing
 
 on:
   pull_request:
-    branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
-  detox:
-    runs-on: macos-latest
+  detox-test:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
       - run: npm ci
-      - run: npx detox build --configuration ios.sim.release
-      - run: npx detox test --configuration ios.sim.release
+      - name: Build iOS app
+        run: npx react-native build-ios --simulator
+      - name: Run Detox tests
+        run: npx detox test --configuration ios.simulator

@@ -3,8 +3,4 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
-    labels:
-      - dependencies
-    commit-message:
-      prefix: chore
+      interval: weekly
