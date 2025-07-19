@@ -1,0 +1,17 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/**', 'Dockerfile']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/wifihostpot:latest
+          push: true
